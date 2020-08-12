@@ -58,6 +58,7 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    bcrypt (3.1.15)
     bindex (0.8.1)
     bootsnap (1.4.7)
       msgpack (~> 1.0)
@@ -140,6 +141,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.2.1)
     regexp_parser (1.7.1)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
@@ -198,6 +200,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
@@ -206,6 +209,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)
+  redis (~> 4.0)
   sass-rails (>= 6)
   selenium-webdriver
   spring
