@@ -13,10 +13,11 @@
     <%= f.collection_select :category_id, Category.all, :id, :name %><br>
 
     <%= f.label :ingredients %>
-    <%= fields_for :ingredients do |ingredient| %>
-        <%= render 'ingredient_fields', f: ingredient %>
+    <%= f.fields_for :recipe_ingredients do |ingredient| %>
+        <%= render "ingredient_fields", f: ingredient %>
     <% end %>
-    <%= link_to_add_association 'Add Ingredient', f, :ingredients %><br>
+    
+    <%= link_to "Add Ingredient", "/recipes/new?counter=#{@counter}" %>
 
     <%= f.label :prep_time, "Prep Time (minutes)" %>
     <%= f.number_field :prep_time %><br>
@@ -28,5 +29,5 @@
     <%= f.number_field :servings %><br>
 
     <%= f.submit "Create Recipe" %>
-    
+
 <% end %>

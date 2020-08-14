@@ -6,13 +6,23 @@ class RecipesController < ApplicationController
 
     def new
         @recipe = Recipe.new
-        @ingredients = @recipe.ingredients.build
+        if params[:counter]
+            @counter = params[:counter].to_i + 1
+           
+        else 
+            @counter = 1
+        end
+        @counter.times do 
+            @ingredients = @recipe.ingredients.build
+            @recipe_ingredients = @recipe.recipe_ingredients.build
+        end
     end 
 
     def create
         @recipe = Recipe.new(recipe_params)
-        if @recipe.save 
-            redirect_to recipe_path(@recipe.id)
+        if @recipe.save
+
+            redirect_to recipe_path(@recipe)
         else 
             render 'new'
         end
@@ -44,6 +54,7 @@ class RecipesController < ApplicationController
         :prep_time, 
         :cook_time, 
         :servings, 
-            ingredients_attributes: [:id, :name, :_destroy])
+        :category_id,
+        recipe_ingredients_attributes: [:id, :quantity, :ingredient_name])
     end 
 end
