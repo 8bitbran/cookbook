@@ -1,16 +1,18 @@
+<h1>Sign up with Email.</h1>
+<%= link_to 'Already a member? Sign in!', signin_path %><br><br>
+
 <%= form_for @user do |f| %>
 
-<%= f.label :avatar, "Profile Photo" %><br>
+<%= f.label :avatar, 'Profile Photo' %><br>
 <%= f.file_field :avatar %><br> 
 
-<%= f.label :username, "Username" %>
-<%= f.text_field :username %><br>
 
-<%= f.label :email, "Email" %>
-<%= f.text_field :email %><br>
+<%= f.text_field :name, placeholder: 'Full name', :required => true %><br>
 
-<%= f.label :password, "Password" %>
-<%= f.password_field :password %><br>
+<%= f.text_field :email, placeholder: 'Email', :required => true %><br>
+
+<%= f.password_field :password, placeholder: 'Password', :required => true %><br>
+<span>Please provide a password with at least 8 characters.</span><br>
 
 <%= f.submit "Sign Up" %>
 
