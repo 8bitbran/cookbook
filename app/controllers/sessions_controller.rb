@@ -6,20 +6,20 @@ class SessionsController < ApplicationController
 
     def create
         if auth
-            #facebook login flow
-            def create
-                @user = User.find_or_create_by(uid: auth['uid']) do |u|
-                  u.name = auth['info']['name']
-                  u.email = auth['info']['email']
-                  u.image = auth['info']['image']
-                end
+            #facebook sign in flow
+            @user = User.find_or_create_by(email: auth['info']['email']) do |u|
+                u.name = auth['info']['name']
+                u.email = auth['info']['email']
+                u.image = auth['info']['image']
+                u.uid = auth['uid']
+            end
              
                 session[:user_id] = @user.id
              
                 redirect_to user_path(@user)
         else 
-            #normal login flow
-            @user = User.find_by(username: params[:username])
+            #normal sign in flow
+            @user = User.find_by(email: params[:email])
             if @user && @user.authenticate(params[:password])
                 session[:user_id] = @user.id
                 redirect_to user_path(@user)
@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
 
     def destroy 
         session.delete :user_id
-        redirect_to '/login'
+        redirect_to '/signin'
     end 
 
     private
