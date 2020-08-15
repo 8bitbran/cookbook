@@ -11,9 +11,9 @@
 
   <body>
   <% if logged_in? %>
-    <%= link_to "Logout", logout_path, method: :delete %>
+    <%= link_to "Sign out", signout_path, method: :delete %>
   <% else %>
-    <%= link_to "Login", login_path %>
+    <%= link_to "Sign in", signin_path %>
   <% end %>
   
     <%= yield %>
