@@ -2,7 +2,9 @@ class Recipe < ApplicationRecord
     belongs_to :user
     belongs_to :category
     has_many :recipe_ingredients
-	has_many :ingredients, through: :recipe_ingredients
+    has_many :ingredients, through: :recipe_ingredients
+    has_many :comments
+    has_many :likes
     accepts_nested_attributes_for :ingredients #,  allow_destroy: true, reject_if: :all_blank
     accepts_nested_attributes_for :recipe_ingredients
     validates :title, presence: true, length: { minimum: 4 }
