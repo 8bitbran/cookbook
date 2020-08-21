@@ -1,7 +1,7 @@
 class RecipeIngredient < ApplicationRecord
     belongs_to :recipe
     belongs_to :ingredient
-    validates :quantity, presence: true
+    validates :quantity, presence: true 
 
     def ingredient_name=(name)
         ingredient = Ingredient.find_or_create_by(name: name)
