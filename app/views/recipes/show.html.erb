@@ -1,13 +1,14 @@
 <h1><%= @recipe.title %></h1>
+
 <% if logged_in? && @recipe.likes.find_by(user_id: current_user.id) %>
-    <p>You liked this post.</p>
+    <p>You liked this recipe.</p>
 <% elsif logged_in? && !@recipe.likes.find_by(user_id: current_user.id) %>
     <%= form_for [ @recipe, @recipe.likes.build] do |f| %>
         <%= f.submit "Like"%><br>
     <% end %>
 <% end %>
 <p><strong>Category:</strong> <%= @recipe.category.name %></p>
-<p><%= @recipe.likes.count %> Likes, <%= @recipe.comments.count %> Comments</p><br>
+<p><%= pluralize(@recipe.likes.count, "Like") %> | <%= pluralize(@recipe.comments.count, "Comment") %></p><br>
 <span><%= @recipe.description %></span><br>
 <aside class='recipe-info'>
     <p><strong>Prep Time:</strong> <%= @recipe.prep_time %></strong></p>
@@ -17,7 +18,7 @@
 
 <% if logged_in? %>
     <h3>Add Comment</h3>
-    <%= form_for [ @recipe, @recipe.comments.build] do |f| %>
+    <%= form_for [@recipe, Comment.new] do |f| %>
         
         <%= f.text_area :description, placeholder: "Content", require: true %><br>
        
@@ -27,7 +28,7 @@
 
 <h2><%= @recipe.comments.count %> Comments</h2>
 <% @recipe.comments.each do |comment| %>
-    <h3><%# comment.user.name %></h3>
-    <p><%# time_ago_in_words(comment.created_at) %> ago</p>
-    <p><%# comment.description %></p>
+    <h3><%= comment.user.name %></h3>
+    <p><%= time_ago_in_words(comment.created_at) %> ago</p>
+    <p><%= comment.description %></p>
 <% end %>
