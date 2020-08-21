@@ -12,6 +12,13 @@
 
 <h2>Sign in with Email.</h2>
 <h4>Existing Cookbook users.</h4>
+
+<% if @error %>
+    <div class='error-message'>
+        <p><%= @error %></p>
+    </div>
+<% end %>
+
 <%= form_tag '/signin' do %>
 
     <%= text_field_tag :email, nil, placeholder: 'Email', :required => true  %><br>
