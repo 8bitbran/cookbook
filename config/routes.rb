@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     resources :likes, only: %i[create]
   end
   resources :categories, only: [:show]
-  post '/recipes', to: 'recipes#create'
   get '/auth/facebook/callback' => 'sessions#create'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
