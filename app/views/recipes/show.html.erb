@@ -1,5 +1,10 @@
 <h1><%= @recipe.title %></h1>
 
+<% if current_user == @recipe.user %>
+    <%= link_to "Edit", edit_recipe_path %> |
+    <%= link_to "Delete", recipe_path, method: 'delete' %>
+<% end %>
+
 <% if logged_in? && @recipe.likes.find_by(user_id: current_user.id) %>
     <p>You liked this recipe.</p>
 <% elsif logged_in? && !@recipe.likes.find_by(user_id: current_user.id) %>
@@ -15,6 +20,19 @@
     <p><strong>Cook Time:</strong> <%= @recipe.cook_time %></strong></p>
     <p><strong>Servings:</strong> <%= @recipe.servings %></strong></p>
 </aside>
+
+<div class='recipe-details'>
+        <h2>Ingredients</h2>
+            <ul class='ingredient-list'>
+                <% @recipe.ingredients.each do |ingredient| %>
+                    <li class='ingredient-item'>
+                        <p><%= ingredient.name %></p>
+                    </li>
+                <% end %>
+            </ul>
+        <h2>Directions</h2>
+            <p><%= @recipe.directions %></p>
+</div>
 
 <% if logged_in? %>
     <h3>Add Comment</h3>
