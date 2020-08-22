@@ -28,22 +28,32 @@ class RecipesController < ApplicationController
     def create
         @recipe = current_user.recipes.build(recipe_params)
         if @recipe.save
-            redirect_to recipe_path(@recipe)
+            redirect_to @recipe
         else 
             render :new
         end
     end 
 
     def edit
-
+        set_recipe
     end 
 
     def update
+        set_recipe
+        @recipe.update(recipe_params)
 
+        if @recipe.save
+            redirect_to @recipe
+        else
+            render :edit
+        end
     end 
 
     def destroy
-
+        set_recipe
+        @recipe.destroy
+        flash[:notice] = "You deleted a recipe."
+        redirect_to '/'
     end 
 
     private
