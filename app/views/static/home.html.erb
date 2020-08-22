@@ -1,15 +1,25 @@
-<h1>Welcome, <%= current_user.name %></h1>
+<% if logged_in? %>
+    <h1>Welcome, <%= current_user.name %></h1>
+<% end %>
+
+<div id='recipe-search'>
+    
+</div> 
+
+<% @categories.each do |category| %>
+    <%= category.name %>
+<% end %>
 
 <h2 class='section-header'>Browse Categories</h2>
 <div id='category-section'>
     <ul class='category-list'>
         <% @categories.each do |category| %>
-            <li class='category-item>
-                <%= link_to, category_path(category) do %>
-                    <img src='' width='64px' height='64px'>
-                    <h3><%= category.name %></h3>
-                <% end %>
+            <%= link_to category_path(category) do %>
+            <li>
+                <img src='' width='64px' height='64px'>
+                <%= category.name %>
             </li>
+            <% end %>
         <% end %>
     </ul>
 </div>
