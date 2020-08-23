@@ -1,0 +1,25 @@
+<div class='user-block'>
+    <div class='user-photo'>
+        <% if @user.image.attached? %>
+            <%= image_tag(@user.image, size: "120x120", alt: "Profile photo") %>
+        <% end %>
+    </div>
+    <div class='user-info'>
+        <h1><%= @user.name %></h1>
+        <span>Liked: <%= @user.likes.count %> | Made: <%= @user.recipes.count %></span>
+        <p><strong>Email:</strong> <%= @user.email %></p>
+        <p><strong>Bio:</strong> <% if @user.bio.nil? %>
+                    No content.
+                <% else %>
+                    @user.bio
+                <% end %>
+        </p>
+    </div>
+
+    <div class='user-recipes'>
+        <h2>Personal Recipes</h2>
+
+        <h2>Liked Recipes</h2>
+    </div>
+</div>  
+
