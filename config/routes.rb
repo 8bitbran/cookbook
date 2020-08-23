@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root 'static#home'
-  get '/profile', to: 'users#profile', as: 'profile'
   get '/signup', to: 'users#new'
   get '/signin', to: 'sessions#new'
   post '/signin', to: 'sessions#create'
