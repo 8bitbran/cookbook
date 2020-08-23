@@ -4,10 +4,6 @@
     <img src='https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-512.png' width='32px' height='32px'>
     <span>Facebook</span>
 <% end %>
-<%= link_to('#') do %>  
-    <img src='https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Twitter3_colored_svg-512.png' width='32px' height='32px'>
-    <span>Twitter</span>
-<% end %>
 <br><br>
 
 <h2>Sign in with Email.</h2>
@@ -29,9 +25,9 @@
  <%end%>
 <br>
 
- <a href='#'>
+ <%= link_to signup_path do %>
  <span>New to Cookbook?</span>
  Join for free!
- </a>
+ <% end %>
  
     
